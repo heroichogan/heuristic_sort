@@ -1,4 +1,3 @@
-
 globals [sequence]
 
 
@@ -74,10 +73,13 @@ to reorder
   ]
   
   
-  ; fix whichever is worse (todo: improve this)
+  ; fix whichever is worse
   let val who
-  if not( preval <= val )            [swap i (i - 1) stop]
-  if not(           val <= postval ) [swap i (i + 1) stop]
+  let prediff  (preval - val)
+  let postdiff (val - postval)
+  if (prediff > postdiff and prediff  > 0) [swap i (i - 1) stop]
+  if (postdiff > prediff and postdiff > 0) [swap i (i + 1) stop]
+  
 end
 
 ;;;;;;;;;;;;;;;;;;;
