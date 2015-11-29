@@ -1,4 +1,4 @@
-globals [sequence]
+globals [sequence moo]
 
 
   
@@ -28,6 +28,22 @@ to move-graphic
   set xcor (position self sequence)
 end
 
+
+;;;;;;;;;;;;;;;;;;;
+to-report total-error
+  let err 0
+  let i 0
+  foreach sequence [
+    ask ? [set err (err + abs (who - i))]
+    set i (i + 1)
+  ]
+  
+  report err
+end
+
+
+; note: 
+; repeat 100 [ask one-of turtles [reorder] tick]
 
 ;;;;;;;;;;;;;;;;;;;
 
